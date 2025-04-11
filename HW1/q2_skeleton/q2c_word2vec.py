@@ -100,9 +100,7 @@ def neg_sampling_loss_and_gradient(
     grad_outside_vecs_non_zeros[0] *= -1
     
     grad_outside_vecs = np.zeros_like(outside_vectors)
-    for i, idx in enumerate(indices):
-        grad_outside_vecs[idx] += grad_outside_vecs_non_zeros[i]
-    
+    np.add.at(grad_outside_vecs, indices, grad_outside_vecs_non_zeros)
     ### END YOUR CODE
 
     return loss, grad_center_vec, grad_outside_vecs
