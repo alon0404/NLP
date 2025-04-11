@@ -92,8 +92,7 @@ def neg_sampling_loss_and_gradient(
     loss = -np.sum(np.log(sigmoid_dot_products))
     
     # Gradient with respect to center word vector
-    gradient_components = (new_outside_vectors.T * (1-sigmoid_dot_products)).T
-    gradient_components[0] *= -1
+    gradient_components = -(new_outside_vectors.T * (1 - sigmoid_dot_products)).T
     grad_center_vec = np.sum(gradient_components, axis=0)
     
     # Gradient with respect to outside vectors
